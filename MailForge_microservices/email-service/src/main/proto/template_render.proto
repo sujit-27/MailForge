@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.mailforge.template_service.grpc";
+option java_outer_classname = "TemplateRenderProto";
+
+service TemplateRenderService {
+  rpc RenderTemplate (RenderTemplateRequest) returns (RenderTemplateResponse);
+}
+
+message RenderTemplateRequest {
+  string templateId = 1;
+  map<string, string> variables = 2;
+}
+
+message RenderTemplateResponse {
+  string subject = 1;
+  string body = 2;
+}

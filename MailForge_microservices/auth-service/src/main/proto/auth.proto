@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+// 1. Removed hyphen from package name (user-service -> userservice)
+option java_package = "auth";
+option java_multiple_files = true;
+option java_outer_classname = "UserProto"; // Changed from AuthProto to avoid confusion
+
+
+service UserGrpcService {
+    rpc CreateUser (CreateUserRequest) returns (UserResponse);
+    rpc GetUserByEmail (GetUserByEmailRequest) returns (UserResponse);
+    rpc GetUserById (GetUserByIdRequest) returns (UserResponse);
+}
+
+message CreateUserRequest {
+    string email = 1;
+    string first_name = 2; // Use snake_case in proto (it converts to camelCase in Java)
+    string last_name = 3;
+}
+
+message GetUserByEmailRequest {
+    string email = 1;
+}
+
+message GetUserByIdRequest {
+    string user_id = 1;
+}
+
+message UserResponse {
+    string id = 1;
+    string email = 2;
+    string role = 3;
+}

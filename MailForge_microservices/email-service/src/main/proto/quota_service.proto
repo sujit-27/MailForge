@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package quota;
+
+option java_multiple_files = true;
+option java_package = "com.mailforge.quota.grpc";
+option java_outer_classname = "QuotaServiceProto";
+
+service QuotaService {
+
+  rpc CanSend (CanSendRequest) returns (CanSendResponse);
+
+  rpc RecordSend (RecordSendRequest) returns (RecordSendResponse);
+
+  // Called when user plan is upgraded/downgraded
+  rpc SyncPlan (SyncPlanRequest) returns (SyncPlanResponse);
+}
+
+message CanSendRequest {
+  string userId = 1;
+  int32 recipientsCount = 2;
+}
+
+message CanSendResponse {
+  bool allowed = 1;
+  int32 remaining = 2;
+  string reason = 3; // OK, DAILY_LIMIT_EXCEEDED
+}
+
+message RecordSendRequest {
+  string userId = 1;
+  int32 recipientsCount = 2;
+}
+
+message RecordSendResponse {
+  bool success = 1;
+}
+
+message SyncPlanRequest {
+  string userId = 1;
+  string planType = 2; // STANDARD, PROFESSIONAL, ULTIMATE
+}
+
+message SyncPlanResponse {
+  bool success = 1;
+}

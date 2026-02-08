@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.mailforge.ai.grpc";
+option java_outer_classname = "AiTemplateProto";
+
+service AiTemplateService {
+  rpc GenerateTemplate (GenerateTemplateRequest)
+      returns (GenerateTemplateResponse);
+}
+
+message GenerateTemplateRequest {
+  string prompt = 1;
+  string tone = 2; // Professional, Friendly, Formal
+}
+
+message GenerateTemplateResponse {
+  string subjectTemplate = 1;
+  string bodyTemplate = 2;
+  repeated string variables = 3;
+}

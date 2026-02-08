@@ -1,0 +1,33 @@
+# env files
+.env
+.env.*
+*.env
+
+# node
+node_modules/
+dist/
+build/
+
+# logs
+logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Java / Spring
+target/
+*.class
+*.jar
+*.war
+
+# Docker
+*.pid
+
+# Kafka local data (if any)
+kafka-data/
