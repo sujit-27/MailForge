@@ -82,7 +82,7 @@ export default function Signup() {
   const handleGoogleAuth = useGoogleLogin({
     flow: "implicit",            // or "auth-code"
     ux_mode: "redirect",         // 👈 THIS FIXES COOP
-    redirect_uri: "http://localhost:5173/",
+    redirect_uri: "https://mail-forge-plum.vercel.app/",
     onSuccess: async (tokenResponse) => {
       setLoading(true);
       try {
