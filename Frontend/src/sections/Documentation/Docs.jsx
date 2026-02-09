@@ -103,10 +103,11 @@ Client → Gateway → Email Service → Kafka → Consumer → Provider
 <p>Step 2 — Send a POST request:</p>
 
 <Code lang="bash">
-{`curl -X POST https://api.mailforge.io/api/emails/v1/send \\
+{`curl -X POST https://mail-forge.me/api/emails/v1/send \\
 -H "X-API-KEY: proj_xxx" \\
 -H "Content-Type: application/json" \\
 -d '{
+ "sender":"sender@gmail.com",
  "recipients":["user@mail.com"],
  "subject":"System Ready",
  "body":"MailForge integration successful"
@@ -146,6 +147,7 @@ Keys automatically map to user, project, and plan limits.
 
 <Code lang="json">
 {`{
+ "sender":"sender@gmail.com",
  "recipients":["user@mail.com"],
  "subject":"Welcome",
  "body":"Hello there"
@@ -180,6 +182,7 @@ Ideal for scale.
 <Code lang="json">
 {`{
  "templateId":"welcome_v1",
+ "sender":"sender@gmail.com",
  "recipients":["user@mail.com"],
  "variables":{"name":"Alex"}
 }`}
@@ -203,7 +206,8 @@ AI can generate templates from prompts. Returned output must be previewed before
 
 <Code lang="json">
 {`{
- "prompt":"Professional SaaS onboarding email"
+ "prompt":"Professional SaaS onboarding email", 
+ "tag":"Onboarding"
 }`}
 </Code>
 
